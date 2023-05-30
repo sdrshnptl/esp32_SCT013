@@ -1,0 +1,268 @@
+[
+    {
+        "id": "0e06f190a5543bcb",
+        "type": "udp in",
+        "z": "341f0a53af61dc5a",
+        "name": "",
+        "iface": "",
+        "port": "2255",
+        "ipv": "udp4",
+        "multicast": "true",
+        "group": "",
+        "datatype": "utf8",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "7e58f6a7ff9b1234"
+            ]
+        ]
+    },
+    {
+        "id": "65d7ce33da3d9f4d",
+        "type": "debug",
+        "z": "341f0a53af61dc5a",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7e58f6a7ff9b1234",
+        "type": "json",
+        "z": "341f0a53af61dc5a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "ef1b5ce14a920dcd",
+                "65d7ce33da3d9f4d"
+            ]
+        ]
+    },
+    {
+        "id": "ef1b5ce14a920dcd",
+        "type": "link out",
+        "z": "341f0a53af61dc5a",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "ace8feb75756fcb6",
+            "cbe2d473c3e32bd3",
+            "48c48702c674cc5e"
+        ],
+        "x": 685,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5fb2fef037d7d3d1",
+        "type": "link out",
+        "z": "341f0a53af61dc5a",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "44e0a40232c12650",
+            "0f934be73ca91723",
+            "02a0de0c32b40423"
+        ],
+        "x": 595,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "21c2aee30f021443",
+        "type": "inject",
+        "z": "341f0a53af61dc5a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "5fb2fef037d7d3d1"
+            ]
+        ]
+    },
+    {
+        "id": "4b60914eaec4f126",
+        "type": "ui_gauge",
+        "z": "341f0a53af61dc5a",
+        "name": "",
+        "group": "9648af1299fd5203",
+        "order": 11,
+        "width": 5,
+        "height": 5,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "10",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 690,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "48c48702c674cc5e",
+        "type": "link in",
+        "z": "341f0a53af61dc5a",
+        "name": "link in 5",
+        "links": [
+            "ef1b5ce14a920dcd"
+        ],
+        "x": 385,
+        "y": 440,
+        "wires": [
+            [
+                "816dd7de23250ad9"
+            ]
+        ]
+    },
+    {
+        "id": "816dd7de23250ad9",
+        "type": "function",
+        "z": "341f0a53af61dc5a",
+        "name": "function 3",
+        "func": "msg.payload = msg.payload[\"Irms\"].toFixed(1)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 440,
+        "wires": [
+            [
+                "4b60914eaec4f126",
+                "819e7351fbf5d877",
+                "bec052a995287b4f"
+            ]
+        ]
+    },
+    {
+        "id": "819e7351fbf5d877",
+        "type": "debug",
+        "z": "341f0a53af61dc5a",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "bec052a995287b4f",
+        "type": "ui_chart",
+        "z": "341f0a53af61dc5a",
+        "name": "",
+        "group": "9648af1299fd5203",
+        "order": 10,
+        "width": 25,
+        "height": 7,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "cubic",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02a0de0c32b40423",
+        "type": "link in",
+        "z": "341f0a53af61dc5a",
+        "name": "link in 6",
+        "links": [
+            "5fb2fef037d7d3d1"
+        ],
+        "x": 575,
+        "y": 520,
+        "wires": [
+            [
+                "bec052a995287b4f"
+            ]
+        ]
+    },
+    {
+        "id": "9648af1299fd5203",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "2c12d35f4eab5af9",
+        "order": 1,
+        "disp": true,
+        "width": 30,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2c12d35f4eab5af9",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
